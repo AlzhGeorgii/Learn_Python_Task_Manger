@@ -7,9 +7,7 @@ from flask_login import config, current_user
 def admin_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
-        if request.method in config.EXEMPT_METHODS:
-            return func(*args, **kwargs)
-        elif current_app.config.get('LOGIN_DISABLED'):
+        if request.method in config.EXEMPT_METHODS or current_app.config.get('LOGIN_DISABLED'):
             return func(*args, **kwargs)
         elif not current_user.is_authenticated:
             return current_app.login_manager.unauthorized()

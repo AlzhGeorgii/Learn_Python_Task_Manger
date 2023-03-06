@@ -4,17 +4,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from webapp.db import db
 
 
-class User(db.Model, UserMixin):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), index=True, unique=True)
     email = db.Column(db.String(128), unique=True)
     password = db.Column(db.String(128))
     role = db.Column(db.String(10), index=True)
 
-    def set_password(self, password):
+    def set_password(self, password: str) -> None:
         self.password = generate_password_hash(password)
 
-    def check_password(self, password):
+    def check_password(self, password: str) -> bool:
         return check_password_hash(self.password, password)
 
     @property
