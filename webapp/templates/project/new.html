@@ -12,23 +12,19 @@
     {% endwith %}
     <div class="row">
         <div class="col-4 mt-3">
-            <form action="{{ url_for('user.process_registration') }}" method="POST">
+            <form action="{{ url_for('project.process_project_creation') }}" method="POST">
                 {{ form.hidden_tag() }}
                 <div class="mb-3">
-                    {{ form.username.label }}
-                    {{ form.username() }}
+                    {{ form.name.label }}
+                    {{ form.name() }}
                 </div>
                 <div class="mb-3">
-                    {{ form.email.label }}
-                    {{ form.email() }}
+                    {{ form.description.label }}
+                    {{ form.description() }}
                 </div>
                 <div class="mb-3">
-                    {{ form.password.label }}
-                    {{ form.password() }}
-                </div>
-                <div class="mb-3">
-                    {{ form.password2.label }}
-                    {{ form.password2() }}
+                    {{ form.date_end.label }}
+                    {{ form.date_end() }}
                 </div>
                 {{ form.submit() }}
             </form>
