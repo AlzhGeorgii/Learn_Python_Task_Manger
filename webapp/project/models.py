@@ -16,7 +16,7 @@ class Project(db.Model):
         return f"<Project {self.username}>"
 
 
-class Project_member(db.Model):
+class ProjectMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), index=True)
     project_id = db.Column(db.Integer, db.ForeignKey("project.id", ondelete="CASCADE"), index=True)
