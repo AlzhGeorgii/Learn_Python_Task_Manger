@@ -27,8 +27,8 @@ def process_login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash("Вы успешно вошли на сайт")
-            return redirect(url_for("index"))
-        
+            return redirect(url_for("project.all_projects"))
+
     flash("Неправильные имя или пароль")
     return redirect(url_for("user.login"))
 
@@ -54,7 +54,7 @@ def process_registration():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        new_user = User(username = form.username.data, email = form.email.data, role = "user")
+        new_user = User(username=form.username.data, email=form.email.data, role="user")
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
